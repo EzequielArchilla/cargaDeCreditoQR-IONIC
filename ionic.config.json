@@ -1,0 +1,7 @@
+{
+  "name": "cargaDeCreditoQR-IONIC",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

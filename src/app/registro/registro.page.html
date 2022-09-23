@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Registro</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <form>    
+    <ion-item lines="full" class="padding" color="default">
+      <ion-label position="floating">Mail</ion-label>
+      <ion-input type="text" [(ngModel)]="email" [ngModelOptions]="{standalone: true}" required></ion-input>
+    </ion-item> 
+    <ion-item lines="full" class="padding" color="default">
+      <ion-label position="floating">Contraseña</ion-label>
+      <ion-input type="password" [(ngModel)]="password" [ngModelOptions]="{standalone: true}" required></ion-input>
+    </ion-item>
+    <ion-row>
+      <ion-col> 
+      <ion-button class="bottom" type="submit" color="secondary" (click)="signUp()" expand="block">Aceptar</ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
+</ion-content>

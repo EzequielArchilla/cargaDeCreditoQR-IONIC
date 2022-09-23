@@ -1,0 +1,22 @@
+ion-item{
+    --background: #e4e7eb;
+    --color: rgb(0, 0, 0);
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+ion-button{
+    --background: #083583;
+    --border-radius: 10px;
+}
+
+.padding{
+    padding-left:5%;
+    padding-right:5%;
+}
+
+.flex{
+    display:flex;
+    justify-content: center;
+    padding-bottom:30%;
+    padding-top:30%;
+}
