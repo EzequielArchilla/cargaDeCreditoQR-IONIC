@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { LoadingController, ToastController } from '@ionic/angular';
+import { UsuarioService } from '../services/usuario.service';
+import { AuthService } from '../services/auth.service';
+import { Usuario } from '../clases/usuario';
+import { first } from 'rxjs/operators';
 
 const auth = getAuth();
 
@@ -17,14 +21,20 @@ export class RegistroPage implements OnInit {
     hasError: false,
     message: '',
   };
+  usuario: Usuario;
 
   constructor(
     private toastController: ToastController,
     private router: Router,
-    public loadingCtrl: LoadingController
+    public loadingCtrl: LoadingController,
+    private usuarioService: UsuarioService,
+    private authService: AuthService,
+    private usuarioFirestore: UsuarioService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.usuario = new Usuario();
+  }
 
   async successToast() {
     const toast = await this.toastController.create({
@@ -50,14 +60,31 @@ export class RegistroPage implements OnInit {
 
   signUp() {
     this.comprobacionDeErrores();
+    var usuario = new Usuario();
+    usuario.mail = this.email;
+    usuario.monto = 0;
+    usuario.tipo = 'basico';
     if (!this.error.hasError) {
-      createUserWithEmailAndPassword(auth, this.email, this.password)
+      this.authService
+        .register(this.email, this.password)
         .then((userCredential) => {
           // Signed in
-          const user = userCredential.user;
-          this.successToast();
+          this.usuarioService.crearUsuario(usuario).then((ok) => {
+            const user = userCredential.user;
+            this.usuarioFirestore
+              .obtenerColeccionUsuario()
+              .pipe(first())
+              .subscribe((data: any) => {
+                this.usuario = data.filter(
+                  (user: any) => user.mail == this.email
+                )[0];
+                this.authService.usuarioLogueado = this.usuario;
+                this.authService.logueado = true;
+              });
 
-          this.navigateTo('main');
+            this.successToast();
+            this.navigateTo('main');
+          });
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -65,7 +92,6 @@ export class RegistroPage implements OnInit {
           this.email = '';
           this.password = '';
           this.errorToast();
-          console.log('ACAA');
         });
     } else {
       this.email = '';

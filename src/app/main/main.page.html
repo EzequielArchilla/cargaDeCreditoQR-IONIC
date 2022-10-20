@@ -1,15 +1,22 @@
-<ion-header>
+<ion-header  [translucent]="true">
   <ion-toolbar>
-    <ion-title>PAGINA PRINCIPAL</ion-title>
+    <ion-button (click)="logout()" slot="end">Salir</ion-button>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  ACA VA EL BALANCE DE LA CUENTA
-  <ion-button shape="default" 
-        color="secondary" 
-        expand="full"
-        size="small"
-        (click)="navigateTo('/qr')"
-        >Ingreso</ion-button>
+<ion-content class="wallet-container text-center" style="background: none transparent;">
+
+		<div style='margin-top:30%; margin-left:5%' class="amount-box text-center">
+			<img src="../../assets/wallet.png" alt="wallet">
+			<p>Balance Total</p>
+			<p class="amount">$ {{this.usuario.monto}}</p>
+		</div>
+
+      <ion-button expand="full" (click)="scan()" style="margin-top:10%" [hidden]="scanActive">SCAN</ion-button>
+
+			<div class="txn-history">
+				<p><b>Qr escaneados</b></p>
+        <p *ngFor="let qr of this.usuario.qrEscaneados" class="txn-list">{{qr}}</p>
+			</div>
+
 </ion-content>

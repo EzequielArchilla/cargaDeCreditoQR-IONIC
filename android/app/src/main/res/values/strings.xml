@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Carga de Credito QR</string>
+    <string name="title_activity_main">Carga de Credito QR</string>
+    <string name="package_name">carga.de.credito.qr</string>
+    <string name="custom_url_scheme">carga.de.credito.qr</string>
+</resources>

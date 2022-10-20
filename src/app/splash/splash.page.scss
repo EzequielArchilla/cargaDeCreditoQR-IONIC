@@ -1,47 +1,24 @@
-.qr {
-    margin-top: 25vh;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-    z-index: 9998;
-  }
-
-  .bg{
-    position:fixed;
-    margin: -30vh 0 0 0vh;
-    width: 100%;
-    min-height: 100vh;
-    background-color: rgb(198, 210, 201);
-    z-index: -9999;
+img{
+  height: 30vh;
+  width: auto;
+  margin: auto;
+  margin-top: 40%;
+  display: block;
 }
 
-  .phone {
-    margin-top: -50vh;
-    margin-left: -15vh;
-    display: block;
-    z-index: 9998;
-  }
+ion-text{
+  font-size: 20px;
+  padding-top:10%;
+  width:auto;
+  display:block;
+  text-align:center;
+  font-weight:bold;
+  text-shadow: 1px 1px 5px #070707,1px 1px 5px #070707,1px 1px 5px #070707;
 
-  .phone-scan {
-	-webkit-animation: phone-scan-animation 2s linear both;
-	        animation: phone-scan-animation 2s linear both;
+  color: #dfdfdf;
+  letter-spacing: 2px;
+
+  text-decoration:none;
+  text-transform:uppercase;
 }
-@keyframes phone-scan-animation {
-0% {
-    -webkit-transform: translateY(0px);
-            transform: translateX(-100vh);
-}
-30% {
-    -webkit-transform: translateY(-5vh);
-            transform: translateX(0vh) scale(0.9);
-}
-70%{
-    -webkit-transform: translateY(-5vh);
-    transform: translateX(0vh) scale(1);
-}
-100% {
-    -webkit-transform: translateY(-38vh);
-            transform: translate(100vh);
-    opacity: 1;
-}
-}
+

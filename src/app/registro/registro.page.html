@@ -7,19 +7,21 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <form>    
-    <ion-item lines="full" class="padding" color="default">
-      <ion-label position="floating">Mail</ion-label>
-      <ion-input type="text" [(ngModel)]="email" [ngModelOptions]="{standalone: true}" required></ion-input>
-    </ion-item> 
-    <ion-item lines="full" class="padding" color="default">
-      <ion-label position="floating">Contraseña</ion-label>
-      <ion-input type="password" [(ngModel)]="password" [ngModelOptions]="{standalone: true}" required></ion-input>
-    </ion-item>
+    <div class="container">
+      <div>
+        <span class="texto">Mail</span>
+        <input type="text" class="inputText" [(ngModel)]="email" [ngModelOptions]="{standalone: true}" required>
+      </div>
+      <div>
+        <span class="texto">Contraseña</span>
+        <input type="password" class="inputText" [(ngModel)]="password" [ngModelOptions]="{standalone: true}" required>
+      </div>
+    
+      
     <ion-row>
       <ion-col> 
-      <ion-button class="bottom" type="submit" color="secondary" (click)="signUp()" expand="block">Aceptar</ion-button>
+      <ion-button class="bottom" type="submit" color="tertiary" (click)="signUp()" expand="block">Aceptar</ion-button>
       </ion-col>
     </ion-row>
-  </form>
+  </div>
 </ion-content>

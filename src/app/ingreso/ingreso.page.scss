@@ -5,9 +5,12 @@ ion-item{
     margin-bottom: 5%;
 }
 ion-button{
+    margin-top:30%;
+    font-weight: bolder;
     --background: #083583;
     --border-radius: 10px;
 }
+
 
 .padding{
     padding-left:5%;
@@ -19,4 +22,40 @@ ion-button{
     justify-content: center;
     padding-bottom:30%;
     padding-top:30%;
+}
+
+.inputText{
+    border: 3px solid rgb(103, 113, 126);
+    margin: 1% 5% 5% 5%;
+    border-radius: 5px;
+    height: 50px;
+    line-height: normal;
+    color: #ffffff;
+    display: block;
+    width: 90%;
+    box-sizing: border-box;
+    user-select: auto;
+    font-size: 16px;
+    padding: 0 6px;
+    padding-left: 12px;
+    :focus{
+        border: 3px solid #5551ff;
+    }
+    
+}
+
+.container{
+    margin-top:40%;
+}
+
+.texto{
+    font-weight: bold;
+    margin-left:10%;
+}
+
+.flexContainer{
+    margin-top: 30%;
+    display:flex;
+    justify-content: space-around;
+    width:100%;
 }

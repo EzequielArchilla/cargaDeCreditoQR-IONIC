@@ -3,13 +3,12 @@ import { CapacitorConfig } from '@capacitor/cli';
 
 export const environment = {
   firebase: {
-    projectId: 'fir-archillaezequiel-16fce',
-    appId: '1:506588007115:web:581024a7a551773495694e',
-    storageBucket: 'fir-archillaezequiel-16fce.appspot.com',
-    locationId: 'us-central',
-    apiKey: 'AIzaSyCgzI5rzonoxnKhxv5vj1opILbtz9vwOzw',
-    authDomain: 'fir-archillaezequiel-16fce.firebaseapp.com',
-    messagingSenderId: '506588007115',
+    apiKey: 'AIzaSyD8ZxH-LTzD-YAUXlyKJNYWc_F9LhS9w0U',
+    authDomain: 'lectorqr-e8a14.firebaseapp.com',
+    projectId: 'lectorqr-e8a14',
+    storageBucket: 'lectorqr-e8a14.appspot.com',
+    messagingSenderId: '373391301027',
+    appId: '1:373391301027:web:54b66151ce4e2bfa8c6216',
   },
   production: false,
   plugins: {
@@ -28,7 +27,7 @@ export const environment = {
       layoutName: 'launch_screen',
       useDialog: true,
     },
-  }, 
+  },
 };
 
 // Initialize Firebase

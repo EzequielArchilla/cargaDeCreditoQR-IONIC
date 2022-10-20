@@ -1,7 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-import { LoadingController, ToastController } from '@ionic/angular';
+import {
+  LoadingController,
+  PickerController,
+  ToastController,
+} from '@ionic/angular';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
+import { UsuarioService } from '../services/usuario.service';
+import { Usuario } from '../clases/usuario';
+import { first } from 'rxjs/operators';
 
 const auth = getAuth();
 
@@ -14,14 +22,20 @@ export class IngresoPage implements OnInit {
   email: string;
   password: string;
   spinnerHidden: boolean;
+  usuario: Usuario;
 
   constructor(
     private toastController: ToastController,
     private router: Router,
-    public loadingCtrl: LoadingController
+    public loadingCtrl: LoadingController,
+    private pickerCtrl: PickerController,
+    private usuarioFirestore: UsuarioService,
+    private authService: AuthService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.usuario = new Usuario();
+  }
 
   async successToast() {
     const toast = await this.toastController.create({
@@ -49,7 +63,16 @@ export class IngresoPage implements OnInit {
     signInWithEmailAndPassword(auth, this.email, this.password)
       .then((userCredential) => {
         // Signed in
-        const user = userCredential.user;
+        this.usuarioFirestore
+          .obtenerColeccionUsuario()
+          .pipe(first())
+          .subscribe((data: any) => {
+            this.usuario = data.filter(
+              (user: any) => user.mail == this.email
+            )[0];
+            this.authService.usuarioLogueado = this.usuario;
+            this.authService.logueado = true;
+          });
         this.successToast();
         this.navigateTo('/main');
       })
@@ -72,7 +95,7 @@ export class IngresoPage implements OnInit {
         this.password = '12345678';
         break;
       case 3:
-        this.email = 'usuario3@gmail.com';
+        this.email = 'admin@gmail.com';
         this.password = '12345678';
         break;
     }
@@ -100,5 +123,43 @@ export class IngresoPage implements OnInit {
           console.log('Loader closed', res2);
         });
       });
+  }
+
+  async openPicker() {
+    const picker = await this.pickerCtrl.create({
+      columns: [
+        {
+          name: 'Usuarios',
+          options: [
+            {
+              text: 'Usuario 1',
+              value: 1,
+            },
+            {
+              text: 'Usuario 2',
+              value: 2,
+            },
+            {
+              text: 'Usuario 3',
+              value: 3,
+            },
+          ],
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+        },
+        {
+          text: 'Confirm',
+          handler: (value) => {
+            this.login(value.Usuarios.value);
+          },
+        },
+      ],
+    });
+
+    await picker.present();
   }
 }
