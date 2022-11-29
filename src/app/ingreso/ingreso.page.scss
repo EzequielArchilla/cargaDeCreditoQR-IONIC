@@ -11,6 +11,13 @@ ion-button{
     --border-radius: 10px;
 }
 
+ion-content{
+    --overflow:hidden;
+    --background: none;
+    background: url("../../assets/Simple\ Shiny.png");
+    background-size: cover;
+    background-position: center center;              
+  }
 
 .padding{
     padding-left:5%;

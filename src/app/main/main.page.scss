@@ -44,8 +44,12 @@
 	width: 50px;
 }
 
+.amountTitle
+{
+	font-size: 32px;
+}
 .amount {
-	font-size: 35px;
+	font-size: 52px;
 }
 
 .amount-box p {
@@ -65,6 +69,7 @@
 
 .txn-history {
 	text-align: left;
+	margin-top:30%;
 }
 
 .txn-list {
